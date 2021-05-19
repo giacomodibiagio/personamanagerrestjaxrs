@@ -17,7 +17,7 @@
 
             <property name="hibernate.show_sql" value="true"/>
             <!-- create-drop,create,update,validate -->
-            <property name="hibernate.hbm2ddl.auto" value="create"/>
+            <property name="hibernate.hbm2ddl.auto" value=""/>
         </properties>
 
     </persistence-unit>

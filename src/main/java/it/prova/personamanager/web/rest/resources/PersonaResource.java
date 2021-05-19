@@ -1,6 +1,7 @@
 package it.prova.personamanager.web.rest.resources;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import it.prova.personamanager.model.Persona;
 import it.prova.personamanager.service.MyServiceFactory;
 import it.prova.personamanager.service.PerosnaService;
@@ -10,6 +11,8 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -31,12 +34,18 @@ public class PersonaResource {
 	public Response getPersona(@PathParam("id") Long id) {
 		LOGGER.info("Verbo Http.........................." + request.getMethod());
 		Persona personaDaCaricare = null;
+		String risultato = null;
 		try {
 			personaDaCaricare = MyServiceFactory.getPersonaServiceInstance().caricaSingoloElemento(id);
+			ObjectMapper objectMapper = new ObjectMapper();
+			DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm a z");
+			objectMapper.setDateFormat(df);
+			risultato = objectMapper.writeValueAsString(personaDaCaricare);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return Response.status(200).entity(personaDaCaricare).build();
+		return Response.status(200).entity(risultato).build();
 	}
 
 	@POST
@@ -56,12 +65,17 @@ public class PersonaResource {
 	public Response listAll() {
 		LOGGER.info("Verbo Http.........................." + request.getMethod());
 		List<Persona> result = null;
+		String risultato = null;
 		try {
 			result = MyServiceFactory.getPersonaServiceInstance().listAllElements();
+			ObjectMapper objectMapper = new ObjectMapper();
+			DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm a z");
+			objectMapper.setDateFormat(df);
+			risultato = objectMapper.writeValueAsString(result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return Response.status(200).entity(result).build();
+		return Response.status(200).entity(risultato).build();
 	}
 
 	@GET
@@ -73,12 +87,17 @@ public class PersonaResource {
 		example.setNome(nome);
 		example.setCognome(cognome);
 		List<Persona> result = null;
+		String risultato = null;
 		try {
 			result = MyServiceFactory.getPersonaServiceInstance().findByExample(example);
+			ObjectMapper objectMapper = new ObjectMapper();
+			DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm a z");
+			objectMapper.setDateFormat(df);
+			risultato = objectMapper.writeValueAsString(result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return Response.status(200).entity(result).build();
+		return Response.status(200).entity(risultato).build();
 	}
 
 	@DELETE
