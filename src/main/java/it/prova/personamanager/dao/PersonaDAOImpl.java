@@ -48,18 +48,18 @@ public class PersonaDAOImpl implements PersonaDAO {
 		Map<String, Object> paramaterMap = new HashMap<String, Object>();
 		List<String> whereClauses = new ArrayList<String>();
 
-		StringBuilder queryBuilder = new StringBuilder("select r from Regista r where r.id = r.id ");
+		StringBuilder queryBuilder = new StringBuilder("select p from Persona p where p.id = p.id ");
 
 		if (StringUtils.isNotEmpty(example.getNome())) {
-			whereClauses.add(" r.nome  like :nome ");
+			whereClauses.add(" p.nome  like :nome ");
 			paramaterMap.put("nome", "%" + example.getNome() + "%");
 		}
 		if (StringUtils.isNotEmpty(example.getCognome())) {
-			whereClauses.add(" r.cognome like :cognome ");
+			whereClauses.add(" p.cognome like :cognome ");
 			paramaterMap.put("cognome", "%" + example.getCognome() + "%");
 		}
 		if (example.getDataNascita() != null) {
-			whereClauses.add("r.dataDiNascita >= :dataDiNascita ");
+			whereClauses.add("p.dataDiNascita >= :dataDiNascita ");
 			paramaterMap.put("dataDiNascita", example.getDataNascita());
 		}
 
