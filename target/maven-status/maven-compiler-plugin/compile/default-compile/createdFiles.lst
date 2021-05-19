@@ -1,0 +1,9 @@
+it\prova\personamanager\service\PerosnaService.class
+it\prova\personamanager\web\listener\LocalEntityManagerFactoryListener.class
+it\prova\personamanager\model\Persona.class
+it\prova\personamanager\dao\PersonaDAO.class
+it\prova\personamanager\service\MyServiceFactory.class
+it\prova\personamanager\dao\PersonaDAOImpl.class
+it\prova\personamanager\web\rest\resources\PersonaResource.class
+it\prova\personamanager\dao\IBaseDAO.class
+it\prova\personamanager\service\PersonaServiceImpl.class
